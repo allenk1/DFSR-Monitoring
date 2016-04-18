@@ -38,11 +38,15 @@ Notes
 
 The email that will be recieved will be of the following format
 
-| DFSR Report for CLIENT NAME. Created on 10/19/2015 22:28:13                                                                                                                     |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| \| Sending Server \| Recieving Server \| Backlog Count \| \| ------------- \| ----------- \| ----------- \| \| Sending1 \| Receiving1 \| 0 \| \| Receiving1 \| Sending1 \| 0 \| |
-| 2 successful, 0 warnings and 0 backlogs from 2 replications.                                                                                                                    |
-| *REPORT WILL SHOW WHAT FILES ARE NOT SYNCED*                                                                                          |
+---------------------------------------
+DFSR Report for CLIENT NAME. Created on 10/19/2015 22:28:13
+
+| Sending Server | Recieving Server | Backlog Count |
+| ------------- | ----------- | ----------- |
+| Sending1 | Receiving1 | 0 |
+| Receiving1 | Sending1 | 0 |
+
+2 successful, 0 warnings and 0 backlogs from 2 replications.                                                                                        |
 
 Thanks & Acknowlegements
 ------------------------
