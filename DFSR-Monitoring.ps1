@@ -31,7 +31,8 @@ $backlogfiles = "BACKLOG FILES"
 
 $emailcontent = "<h2>DFSR Report for " + $clientname + ". Created on " +(Get-Date) + "</h2>`r`n"
 $emailcontent += "<br /><br />"
-$emailcontent += "<table style='border: 1px solid black; border-collapse: collapse;'><tr><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Sending Server</th><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Recieving Server</th><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Backlog Count</th></tr>"
+$emailcontent += "<table style='border: 1px solid black; border-collapse: collapse;'><tr><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Sending Server</th><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Recieving Server</th><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Backlog Count</th><th style='border: 1px solid black; background: #dddddd; padding: 5px;'>Group Name</th></tr>"
+
 
 foreach ($Group in $RGroups) {
     $RGFoldersWMIQ = "SELECT * FROM DfsrReplicatedFolderConfig WHERE ReplicationGroupGUID='" + $Group.ReplicationGroupGUID + "'"
@@ -82,7 +83,7 @@ foreach ($Group in $RGroups) {
                         $backlogfiles += Get-DfsrBacklog -SourceComputerName $SendingMember -DestinationComputerName $ReceivingMember -GroupName $RFName
                     }
 
-                    $emailcontent += "<tr><td style='border: 1px solid black; padding: 5px;'>$SendingMember</td><td style='border: 1px solid black; padding: 5px;'>$ReceivingMember</td><td style='border: 1px solid black; padding: 5px;'>$BacklogFileCount</td></tr>"
+                    $emailcontent += "<tr><td style='border: 1px solid black; padding: 5px;'>$SendingMember</td><td style='border: 1px solid black; padding: 5px;'>$ReceivingMember</td><td style='border: 1px solid black; padding: 5px;'>$BacklogFileCount</td><td style='border: 1px solid black; padding: 5px;'>$RFName</td></tr>"
                     #Write-Host "$BacklogFileCount files in backlog $SendingMember->$ReceivingMember for $RGName" -fore $Color
  
                 } # Closing iterate through all folders
@@ -110,6 +111,8 @@ if($bklog>100){
     $Message.Priority = "high" 
 }
 
-$SMTPclient.Send($Message)
+#$SMTPclient.Send($Message)
+
+Write-host $content
 
 
